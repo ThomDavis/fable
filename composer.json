@@ -1,6 +1,5 @@
 {
     "name": "thomdavis/fable",
-    "type": "composer-plugin",
     "license": "MIT",
     "description": "A Laravel package that provides a simple way to create and manage your application's story.",
     "keywords": [
@@ -41,8 +40,8 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-main": "6.x-dev",
-            "dev-master": "6.x-dev"
+            "dev-main": "0.0.x-dev",
+            "dev-master": "0.0.x-dev"
         },
         "laravel": {
             "providers": [
