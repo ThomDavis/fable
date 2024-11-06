@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52c7f593ba9c222acdddf850ee46e9fc",
+    "content-hash": "0c6961b0158d1beb96e5a868a248ebfe",
     "packages": [
         {
             "name": "brick/math",
@@ -7543,12 +7543,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8fbcf5b1484e8a4b6c8186fcca69aaa81972b0c0"
+                "reference": "3dd5a01db85d5091f242bd70fbd9fd3ac52f0ab9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8fbcf5b1484e8a4b6c8186fcca69aaa81972b0c0",
-                "reference": "8fbcf5b1484e8a4b6c8186fcca69aaa81972b0c0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/3dd5a01db85d5091f242bd70fbd9fd3ac52f0ab9",
+                "reference": "3dd5a01db85d5091f242bd70fbd9fd3ac52f0ab9",
                 "shasum": ""
             },
             "require": {
@@ -7593,7 +7593,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-30T19:20:23+00:00"
+            "time": "2024-11-06T19:38:07+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10877,7 +10877,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "friendsofphp/php-cs-fixer": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

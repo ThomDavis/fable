@@ -3,13 +3,14 @@
 namespace ThomDavis\Fable\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use ThomDavis\Fable\Models\Fable;
 
 trait HasFables
 {
-
     /**
      * @return void
      */
@@ -73,13 +74,49 @@ trait HasFables
         ]);
     }
 
+    public function latestChange(): Collection
+    {
+        if (!$this->lastFable) {
+            return collect();
+
+        }
+
+        $output = collect();
+
+        $this->lastFable->old_value->each(function ($value, $key) use ($output) {
+            $output->push([
+                $key. '-old' => $value,
+                $key. '-new' => $this->lastFable->new_value[$key],
+            ]);
+        });
+
+        return $output;
+
+    }
+
+    public function lastFable(): MorphOne
+    {
+        return $this->fables()->latest()->one();
+    }
+
+
+    public function rollbackFable(array|string $columns = null): void
+    {
+
+        if ($columns) {
+            $this->update($this->lastFable->old_value->only($columns)->toArray());
+            return;
+        }
+        $this->update($this->lastFable->old_value->toArray());
+    }
+
 
     /**
      * @return MorphMany
      */
     public function fables(): MorphMany
     {
-        return morphMany(
+        return $this->morphMany(
             Fable::class,
             'fable'
         );
