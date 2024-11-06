@@ -11,11 +11,11 @@ class FableServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../config/fable.php' => config_path('fable.php'),
-        ], 'fable-config');
+        ], 'fable');
 
-        $this->publishes([
-            __DIR__.'/../database/migrations/create_fable_table.php.stub' => $this->getMigrationFileName('create_permission_tables.php'),
-        ], 'fable-migrations');
+        $this->publishesMigrations([
+            __DIR__.'/../database/migrations' => database_path('migrations'),
+        ], ['fable', 'fable-migrations']);
     }
 
     public function register()
