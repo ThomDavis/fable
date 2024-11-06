@@ -3,10 +3,13 @@
 namespace ThomDavis\Fable\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
+use Orchestra\Testbench\Attributes\WithMigration;
 use Orchestra\Testbench\TestCase as Orchestra;
 use ThomDavis\Fable\Tests\TestModels\Movie;
 use ThomDavis\Fable\Tests\TestModels\User;
+use function Orchestra\Testbench\workbench_path;
 
+#[WithMigration]
 abstract class TestCase extends Orchestra
 {
 
@@ -21,6 +24,13 @@ abstract class TestCase extends Orchestra
         $this->setUpDatabase($this->app);
     }
 
+    protected function defineDatabaseMigrations(): void
+    {
+        $this->loadMigrationsFrom(
+            'database/migrations'
+        );
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -32,9 +42,9 @@ abstract class TestCase extends Orchestra
 
         $schema->create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email');
-            $table->string('first_name');
-            $table->softDeletes();
+            $table->string('email')->nullable();
+            $table->string('first_name')->nullable();
+            $table->timestamps();
         });
 
         $schema->create('movie', function (Blueprint $table) {
@@ -45,6 +55,6 @@ abstract class TestCase extends Orchestra
         });
 
         $this->testUser = User::create(['email' => 'test@user.com', 'first_name' => 'test']);
-        $this->testMovie = Movie::create(['name' => 'Jaws', 'user_id' => $this->testUser->id]);
+//        $this->testMovie = Movie::create(['name' => 'Jaws', 'user_id' => $this->testUser->id]);
     }
 }

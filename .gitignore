@@ -23,3 +23,6 @@ Homestead.json
 .phpunit.result.cache
 .idea
 build/
+workbench/
+testbench.yaml
+.php-cs-fixer.cache

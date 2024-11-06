@@ -7,5 +7,4 @@ use ThomDavis\Fable\Traits\HasFables;
 
 class Movie extends Model
 {
-    use HasFables;
 }

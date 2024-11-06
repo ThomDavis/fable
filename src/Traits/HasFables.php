@@ -46,7 +46,7 @@ trait HasFables
      * @param string $action
      * @return void
      */
-    protected function track(Model $model, $action = 'Created'): void
+    protected function track(Model $model, string $action = 'Created'): void
     {
         // Allow for overriding of table if it's not the model table
         $table = $model->getTable();
@@ -85,8 +85,10 @@ trait HasFables
 
         $this->lastFable->old_value->each(function ($value, $key) use ($output) {
             $output->push([
-                $key. '-old' => $value,
-                $key. '-new' => $this->lastFable->new_value[$key],
+                $key => [
+                    'old' => $value,
+                    'new' => $this->lastFable->new_value[$key],
+                ],
             ]);
         });
 
@@ -96,7 +98,7 @@ trait HasFables
 
     public function lastFable(): MorphOne
     {
-        return $this->fables()->latest()->one();
+        return $this->fables()->latest('id')->one();
     }
 
 
