@@ -10,9 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('fables', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->morphs('fable');
+            $table->morphs('history');
             $table->string('action');
             $table->foreignId('user_id')->nullable()->references('id')->on('users');
             $table->jsonb('old_value')->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('fables');
+        Schema::dropIfExists('histories');
     }
 };

@@ -5,11 +5,11 @@ namespace ThomDavis\Fable\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fable extends Model
+class History extends Model
 {
     use HasFactory;
 
-    protected $table = 'fables';
+    protected $table = 'histories';
 
     protected $casts = [
         'old_value' => 'collection',
@@ -23,12 +23,12 @@ class Fable extends Model
         'new_value',
     ];
 
-    public function creator()
+    public function creator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(config('auth.defaults.guard'), 'model');
     }
 
-    public function source()
+    public function source(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
         return $this->morphTo();
     }

@@ -10,10 +10,6 @@ class FableServiceProvider extends ServiceProvider
     {
 
         $this->publishes([
-            __DIR__.'/../config/fable.php' => config_path('fable.php'),
-        ], 'fable');
-
-        $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], ['fable', 'fable-migrations']);
     }

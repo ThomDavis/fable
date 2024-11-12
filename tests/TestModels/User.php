@@ -3,11 +3,11 @@
 namespace ThomDavis\Fable\Tests\TestModels;
 
 use Illuminate\Database\Eloquent\Model;
-use ThomDavis\Fable\Traits\HasFables;
+use ThomDavis\Fable\Traits\TrackHistory;
 
 class User extends Model
 {
-    use HasFables;
+    use TrackHistory;
 
     protected $fillable = [
         'first_name',
